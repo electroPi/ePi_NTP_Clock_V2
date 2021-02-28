@@ -26,6 +26,7 @@
 inline void clkDelay(unsigned long period) {
     unsigned long tNow = millis();
     while(millis() < tNow+period) {
+        yield();
         ESP.wdtFeed();
     }
 }

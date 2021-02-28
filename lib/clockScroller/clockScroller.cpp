@@ -20,7 +20,7 @@
 
 clockScroller::clockScroller() :
 MD_MAX72XX(HARDWARE_TYPE, CS_PIN, MAX_DEVICES) {
-    scrollSpeed = 50;//clockConfig::getInstance()->getDisplayScrollSpeed();
+    scrollSpeed = clockConfig::getInstance()->getDisplayScrollSpeed();
     brightness = clockConfig::getInstance()->getDisplayBrightness();
     enabled = true;
 }
