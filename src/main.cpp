@@ -54,12 +54,12 @@ unsigned long lastminute;
 
 void hstripRollover() {
   hoursStrip->clear();
-  hoursStrip->show();
+  // hoursStrip->show();
 }
 
 void mstripRollover() {
   minutesStrip->clear();
-  minutesStrip->show();
+  // minutesStrip->show();
 }
 
 void daylightBrightness() {
