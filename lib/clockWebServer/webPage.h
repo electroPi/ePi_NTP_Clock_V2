@@ -17,6 +17,9 @@ const char webPage[] PROGMEM = R"=====(
 
     <h1>electroPi NTP Clock V2.0 Setup</h1>
 
+    <h3>Uptime:
+    {{UP_DAY}} : {{UP_HOUR}} : {{UP_MIN}}
+    </h3
 
     <br>
     <fieldset>

@@ -19,13 +19,13 @@
 
 class clockWebServer {
     private:
-        
     public:
         clockWebServer();
         ~clockWebServer();
-
+        
         void begin();
         void loop();
+        void getUptime();
 };
 
 #endif /* __CLOCK_WEB_SERVER_H */

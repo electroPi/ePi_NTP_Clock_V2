@@ -8,6 +8,7 @@
   #define DEBUG_PRINTLN Serial.println
   #define DEBUG_PRINT Serial.print
   #define DEBUG_START Serial.begin(115200);
+  
 #else
   #define DEBUG_PRINTLN 
   #define DEBUG_PRINT
@@ -25,10 +26,10 @@
  */
 inline void clkDelay(unsigned long period) {
     unsigned long tNow = millis();
-    while(millis() < tNow+period) {
-        yield();
+    do {
         ESP.wdtFeed();
-    }
+        yield();        
+    } while(millis() < tNow+period) ;
 }
 
 

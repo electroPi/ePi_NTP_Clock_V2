@@ -195,7 +195,9 @@ void clockStrip::RainbowCycleUpdate() {
     // for(int i=0; i< numPixels(); i++) {
         setPixelColor((i+offset) % maxInterval, Wheel(((i * 256 / numPixels()) + Index) & 255));
     }
+    clkDelay(0);
     show();
+    clkDelay(0);
     Increment();
 }
 

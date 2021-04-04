@@ -52,6 +52,8 @@ unsigned long lastminute;
 
 
 
+
+
 void hstripRollover() {
   hoursStrip->clear();
   // hoursStrip->show();
@@ -79,6 +81,9 @@ void setup() {
   Serial.begin(115200);  
   delay(2000);
 
+
+  ESP.wdtDisable();
+  ESP.wdtEnable(WDTO_8S);
 
   // cleanup everything before start!
   clk_scrl.begin();
@@ -167,7 +172,7 @@ void setup() {
 
 
 
-void loop() {
+void loop() {  
   clk_ws.loop();
   clk_ota.loop();
 

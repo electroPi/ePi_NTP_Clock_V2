@@ -11,6 +11,10 @@
 
 #include "clockDebug.h"
 
+unsigned long upMin = 0;
+unsigned long upHour = 0;
+unsigned long upDay = 0;
+
 static ESP8266WebServer server;// = ESP8266WebServer();
 
 
@@ -67,6 +71,17 @@ String getAutoNightStartValue(PageArgument& args) {
 String getAutoNightEndValue(PageArgument& args) {
   return String(clockConfig::getInstance()->getAutoNightEndTime());
 }
+
+String getUpDay(PageArgument& args) {
+  return String(upDay);
+}
+String getUpHour(PageArgument& args) {
+  return String(upHour);
+}
+String getUpMin(PageArgument& args) {
+  return String(upMin);
+}
+
 // Page construction
 PageElement MainPage(webPage, {
     {"CLOCK_ENABLE_CHECKED", getHourStripEnabled},
@@ -88,7 +103,12 @@ PageElement MainPage(webPage, {
   
 
     {"AUTO_TIME_START_TIME", getAutoNightStartValue},
-    {"AUTO_TIME_END_TIME", getAutoNightEndValue}
+    {"AUTO_TIME_END_TIME", getAutoNightEndValue},
+
+    {"UP_DAY", getUpDay},
+    {"UP_HOUR", getUpHour},
+    {"UP_MIN", getUpMin}
+    
 });
 PageBuilder NTPPage("/", {MainPage});
 
@@ -251,4 +271,14 @@ void clockWebServer::begin() {
 
 void clockWebServer::loop() {
     server.handleClient();
+    getUptime();
 }  
+
+
+void clockWebServer::getUptime() {
+  unsigned long now = millis();
+
+  upMin = (now / (1000 * 60)) % 60;
+  upHour = (now / (1000 * 60 * 60)) % 24;
+  upDay = (now / (1000 * 60 * 60 * 24)) % 365;
+}
